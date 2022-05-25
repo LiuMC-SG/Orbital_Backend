@@ -1,8 +1,9 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.core import serializers
 
 from datetime import datetime
 import requests
-from modules.models import ModuleCondensed, Module
+from modules.models import Module
 
 
 # Scrape for all moduleList of the current academic year
@@ -32,9 +33,9 @@ def cron_moduleList(acadYr):
         f'https://api.nusmods.com/v2/{acadYr}/moduleList.json')
     for module in moduleList.json():
         cron_moduleInfo(acadYr, module['moduleCode'])
-        moduleModel = ModuleCondensed(
-            key=f"{module['moduleCode']} {acadYr}", moduleCode=module['moduleCode'], title=module['title'], semesters=module['semesters'])
-        moduleModel.save()
+        # moduleModel = ModuleCondensed(
+        #     key=f"{module['moduleCode']} {acadYr}", moduleCode=module['moduleCode'], title=module['title'], semesters=module['semesters'])
+        # moduleModel.save()
 
 
 # Scrape NUSMods
@@ -51,3 +52,9 @@ def cron_nusmods():
 def index(request):
     cron_nusmods()
     return HttpResponse("Hello, world. You're at the modules index.")
+
+def condensed_info(request):
+    return JsonResponse(list(Module.objects.all().values("moduleCode", "title")), safe=False)
+
+def full_info(request):
+    return JsonResponse(list(Module.objects.all().values()), safe=False)

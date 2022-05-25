@@ -4,17 +4,18 @@ from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
 
+# Condensed module information
+# class ModuleCondensed(models.Model):
+#     key = models.TextField(primary_key=True)
+#     moduleCode = models.TextField()
+#     title = models.TextField()
+#     semesters = ArrayField(models.IntegerField())
 
-class ModuleCondensed(models.Model):
-    key = models.TextField(primary_key=True)
-    moduleCode = models.TextField()
-    title = models.TextField()
-    semesters = ArrayField(models.IntegerField())
-
-    def __str__(self):
-        return self.key
+#     def __str__(self):
+#         return self.key
 
 
+# Full module
 class Module(models.Model):
     key = models.TextField(primary_key=True)
     acadYear = models.TextField()

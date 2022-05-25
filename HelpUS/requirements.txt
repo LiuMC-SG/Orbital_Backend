@@ -1,1 +1,10 @@
-Django==4.0.5
+asgiref==3.5.2
+backports.zoneinfo==0.2.1
+certifi==2022.5.18.1
+charset-normalizer==2.0.12
+Django==4.0.4
+idna==3.3
+psycopg2==2.9.3
+requests==2.27.1
+sqlparse==0.4.2
+urllib3==1.26.9
