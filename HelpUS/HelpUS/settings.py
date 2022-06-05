@@ -62,12 +62,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'HelpUS.urls'
 
-CORS_ALLOWED_ORIGINS = [
-    "https://helpus-349601.web.app",
-    "https://helpus-349601.firebaseapp.com",
-    "http://localhost",
-    "http://127.0.0.1"
-]
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {
