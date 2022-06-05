@@ -48,13 +48,15 @@ def cron_nusmods():
 
     cron_moduleList(acadYr)
 
-
 def index(request):
+    return HttpResponse('Modules Index Page.')
+
+def update_db(request):
     cron_nusmods()
     return HttpResponse("Hello, world. You're at the modules index.")
 
 def condensed_info(request):
-    return JsonResponse(list(Module.objects.all().values("moduleCode", "title")), safe=False)
+    return JsonResponse(list(Module.objects.all().values('moduleCode', 'title', 'prerequisite')), safe=False)
 
 def full_info(request):
     return JsonResponse(list(Module.objects.all().values()), safe=False)
